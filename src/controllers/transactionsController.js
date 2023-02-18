@@ -9,6 +9,7 @@ const allTransactions = async (req, res, next) => {
     page,
     query: { filter, search },
   } = req;
+
   if (filter !== undefined || search !== undefined) return next();
 
   const response = await getTransactions({ size, page });

@@ -15,7 +15,7 @@ const { updateData } = require("./src/updateData");
     .then(() => {
       function getData() {
         // console.log("Функция выполняется раз в секунду");
-        
+
         updateData();
         setTimeout(getData, 8000);
       }
