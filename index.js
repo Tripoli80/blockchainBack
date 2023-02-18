@@ -6,6 +6,7 @@ const { updateData } = require("./src/updateData");
 (() => {
   const PORT = process.env.PORT || 3000;
   const uriDb = process.env.URL_DB;
+  console.log("🚀 ~ file: index.js:9 ~ uriDb", uriDb)
 
   const connection = mongoose.connect(uriDb, {
     promiseLibrary: global.Promise,
