@@ -6,7 +6,8 @@ const getQueryTransactions = async ({ filter, search, size, page }) => {
   const total = await Transaction.find({
     [filter]: { $regex: query },
   }).count();
-  
+  const lastBlock = await Transaction.find().sort({ _id: -1 }).limit(1);
+
   const transaction = await Transaction.find({
     [filter]: { $regex: query },
   })
@@ -14,19 +15,32 @@ const getQueryTransactions = async ({ filter, search, size, page }) => {
     .sort({ _id: 1 })
     .skip(skip)
     .limit(size);
-  return { total, page, result_size: size, result: transaction };
+  return {
+    total,
+    page,
+    result_size: size,
+    lastBlock: lastBlock[0].blockNumber,
+    result: transaction,
+  };
 };
 
 const getTransactions = async ({ size, page }) => {
-  console.log("🚀 ~ file: transactionServices.js:30 ~ size", size)
   const total = await Transaction.find().allowDiskUse(true).count();
+  const lastBlock = await Transaction.find().sort({ _id: -1 }).limit(1);
+
   const transaction = await Transaction.find()
     .allowDiskUse(true)
     .sort({ _id: 1 })
     .skip(size * (page - 1))
     .limit(size);
 
-  return { total, page, result_size: size, result: transaction };
+  return {
+    total,
+    page,
+    result_size: size,
+    lastBlock: lastBlock[0].blockNumber,
+    result: transaction,
+  };
 };
 
 module.exports = {
