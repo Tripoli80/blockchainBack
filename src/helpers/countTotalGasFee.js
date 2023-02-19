@@ -1,9 +1,15 @@
 // const jwt = require('jsonwebtoken');
 
-const countTotalGasFee = async (usedGas, baseFee , priorityFee) => {
+const countTotalGasFee =  ({gas, gasPrice, maxFeePerGas}) => {
   //The total fee is calculated as "units of gas used * (base fee + priority fee)"
 
-  return usedGas*(baseFee+priorityFee);
+  const totanWithMaxFee = parseInt(gas) * parseInt(maxFeePerGas);
+  const total = parseInt(gas) * parseInt(gasPrice);
+
+  totalfee = totanWithMaxFee ? totanWithMaxFee : total;
+
+  // return usedGas * (baseFee + priorityFee);
+  return totalfee.toString(16);
 };
 
 module.exports = { countTotalGasFee };

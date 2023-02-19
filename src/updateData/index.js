@@ -21,7 +21,6 @@ const updateData = async () => {
 const getDataByBlock = async (numberBlock, index) => {
   if (numberBlock) {
   }
-  let msg;
   try {
     const params = numberBlock
       ? `&module=proxy&tag=${numberBlock}&action=eth_getBlockByNumber&boolean=true`
@@ -33,7 +32,7 @@ const getDataByBlock = async (numberBlock, index) => {
       return;
     }
 
-    msg = result.data;
+
     const prepereTransactions = await prepareTransactionData(result.data);
 
     await saveTransactionToDB(prepereTransactions, index);
@@ -52,7 +51,7 @@ const getDataFirstTime = async () => {
     const { result } = data; // текущий блок
     const resultInt = parseInt(result);
 
-    for (let index = 0; index < 200; index++) {
+    for (let index = 0; index < 1000; index++) {
       setTimeout(async () => {
         console.log("🚀 ~ file: index.js:54 ~ index", index);
         await getDataByBlock((resultInt - index).toString(16), index);

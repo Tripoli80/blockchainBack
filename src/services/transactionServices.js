@@ -26,7 +26,7 @@ const getQueryTransactions = async ({ filter, search, size, page }) => {
 
 const getTransactions = async ({ size, page }) => {
   const total = await Transaction.find().allowDiskUse(true).count();
-  const lastBlock = await Transaction.find().sort({ _id: -1 }).limit(1);
+  const lastBlock = await Transaction.find().sort({ timestamp: -1 }).limit(1);
 
   const transaction = await Transaction.find()
     .allowDiskUse(true)

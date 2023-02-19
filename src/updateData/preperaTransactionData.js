@@ -1,3 +1,5 @@
+const { countTotalGasFee } = require("../helpers/countTotalGasFee");
+
 const prepareTransactionData = (data) => {
   const { timestamp, transactions } = data.result;
   const preparedTransactions = transactions.map((item) => {
@@ -14,6 +16,9 @@ const prepareTransactionData = (data) => {
       transactionIndex,
       value,
     } = item;
+
+    const totalfee =  countTotalGasFee({ gas, gasPrice, maxFeePerGas });
+
     const currentTransaction = {
       hash,
       blockHash,
@@ -26,6 +31,7 @@ const prepareTransactionData = (data) => {
       to,
       transactionIndex,
       value,
+      totalfee,
       timestamp,
     };
     return currentTransaction;
