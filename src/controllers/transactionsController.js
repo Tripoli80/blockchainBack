@@ -25,7 +25,7 @@ const queryTransactions = async (req, res) => {
   search = decodeURI(search);
 
   if (search.length < 1)
-    return res.status(200).json({ massege: "search text min 3 symbol" });
+    return res.status(200).json({ massege: "search text min 1 symbol" });
   const response = await getQueryTransactions({ filter, search, size, page });
   return res.status(200).json(response);
 };
