@@ -17,7 +17,12 @@ const prepareTransactionData = (data) => {
       value,
     } = item;
 
-    const totalfee =  countTotalGasFee({ gas, gasPrice, maxFeePerGas });
+    const totalfee = countTotalGasFee({
+      gas,
+      maxPriorityFeePerGas,
+      gasPrice,
+      maxFeePerGas,
+    });
 
     const currentTransaction = {
       hash,
@@ -36,7 +41,7 @@ const prepareTransactionData = (data) => {
     };
     return currentTransaction;
   });
-    
+
   return preparedTransactions;
 };
 module.exports = {
