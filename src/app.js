@@ -5,7 +5,7 @@ const cors = require("cors");
 const { errorHandler, tryWrapper } = require("./helpers");
 const transactionsRouter = require("./routes/transactionsRoute");
 const setDataPigination = require("./middleware/pagination");
-
+const saveClientIP = require("./middleware/saveclientip");
 
 const app = express();
 
@@ -14,9 +14,8 @@ const formatsLogger = app.get("env") === "development" ? "dev" : "short";
 app.use(logger(formatsLogger));
 app.use(cors());
 app.use(express.json());
-
-
-app.use("/api/transactions",  transactionsRouter);
+app.use(saveClientIP);
+app.use("/api/transactions", transactionsRouter);
 
 app.use((req, res) => {
   res.status(404).json({ message: "Routs not found" });

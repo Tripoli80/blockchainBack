@@ -4,6 +4,8 @@ const {
 } = require("../services/transactionServices");
 
 const allTransactions = async (req, res, next) => {
+
+
   const {
     size,
     page,
@@ -15,6 +17,7 @@ const allTransactions = async (req, res, next) => {
   const response = await getTransactions({ size, page });
   return res.status(200).json(response);
 };
+
 const queryTransactions = async (req, res) => {
   let {
     size,
