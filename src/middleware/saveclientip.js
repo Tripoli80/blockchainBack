@@ -1,7 +1,8 @@
 const Reqip = require("../models/schemasMongoose/req");
 
 const saveClientIP = async (req, res, next) => {
-  const ip = req.connection.remoteAddress;
+  const ip = req.ip;
+  console.log("🚀 ~ file: saveclientip.js:5 ~ ip:", ip)
   const reqvest = await Reqip.findOne({ reqip: ip });
   if (reqvest) {
     reqvest.count = parseInt(reqvest.count) + 1;
