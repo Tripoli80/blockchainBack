@@ -6,7 +6,7 @@ const { updateData } = require("./src/updateData");
 (() => {
   const PORT = process.env.PORT || 3000;
   const uriDb = process.env.URL_DB;
-  console.log("🚀 ~ file: index.js:9 ~ uriDb", uriDb)
+  console.log("🚀 ~ file: index.js:9 ~ uriDb", uriDb);
 
   const connection = mongoose.connect(uriDb, {
     promiseLibrary: global.Promise,
@@ -15,8 +15,6 @@ const { updateData } = require("./src/updateData");
   connection
     .then(() => {
       function getData() {
-        // console.log("Функция выполняется раз в секунду");
-
         updateData();
         setTimeout(getData, 8000);
       }

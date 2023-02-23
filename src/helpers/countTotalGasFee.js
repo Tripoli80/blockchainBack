@@ -1,7 +1,6 @@
 // const jwt = require('jsonwebtoken');
 
 const countTotalGasFee =  ({gas, gasPrice, maxPriorityFeePerGas, maxFeePerGas}) => {
-  //The total fee is calculated as "units of gas used * (base fee + priority fee)"
  const maxPriorityFee = maxPriorityFeePerGas
    ? BigInt(gas) * BigInt(maxPriorityFeePerGas)
    : BigInt(0);

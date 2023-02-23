@@ -24,6 +24,5 @@ router.get(
   tryWrapper(queryTransactions)
 );
 
-//if query "product" exist then next()
 
 module.exports = router;

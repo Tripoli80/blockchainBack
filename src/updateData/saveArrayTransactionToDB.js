@@ -1,11 +1,10 @@
 const Transaction = require("../models/schemasMongoose/transaction");
 
-const saveTransactionToDB = async (prepereTransactions, index) => {
+const saveTransactionToDB = async (prepereTransactions) => {
   try {
     await Transaction.insertMany(prepereTransactions, { ordered: false });
   } catch (error) {
-    console.log("Can't not All save index", index);
-    // throw new Error(error);
+    console.log("error save to DB");
   }
 };
 
