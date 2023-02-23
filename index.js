@@ -13,7 +13,6 @@ const { updateData } = require("./src/updateData");
   connection
     .then(() => {
       function getData() {
-        console.log(" file: index.js:16 ~ getData")
         updateData();
         setTimeout(getData, 8000);
       }
