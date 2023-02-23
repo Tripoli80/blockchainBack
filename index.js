@@ -16,6 +16,7 @@ const { updateData } = require("./src/updateData");
     .then(() => {
       function getData() {
         updateData();
+        console.log("first")
         setTimeout(getData, 8000);
       }
       getData();
