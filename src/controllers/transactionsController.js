@@ -4,8 +4,6 @@ const {
 } = require("../services/transactionServices");
 
 const allTransactions = async (req, res, next) => {
-
-
   const {
     size,
     page,
@@ -13,7 +11,6 @@ const allTransactions = async (req, res, next) => {
   } = req;
 
   if (filter !== undefined || search !== undefined) return next();
-
   const response = await getTransactions({ size, page });
   return res.status(200).json(response);
 };

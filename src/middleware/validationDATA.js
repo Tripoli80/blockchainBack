@@ -5,7 +5,6 @@ function validatorQuery(schema) {
     let {
       query: { filter, size, page, search },
     } = req;
-
     const data = { size, page, filter, search };
     const result = schema.validate(data);
     if (result.error) {
