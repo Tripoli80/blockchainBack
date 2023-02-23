@@ -4,7 +4,6 @@ const getQueryTransactions = async ({ filter, search, size, page }) => {
   const query = new RegExp(".*" + search + ".*", "i");
   const skip = size * (page - 1);
   const total = await Transaction.find({
-
     [filter]: { $regex: query },
   }).count();
   const lastBlock = await Transaction.find().sort({ _id: -1 }).limit(1);
@@ -37,6 +36,7 @@ const getTransactions = async ({ size, page }) => {
   return {
     total,
     page,
+    page2: page,
     result_size: size,
     lastBlock: lastBlock[0].blockNumber,
     result: transaction,
