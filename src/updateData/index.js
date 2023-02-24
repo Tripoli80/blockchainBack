@@ -4,7 +4,7 @@ const { prepareTransactionData } = require("./preperaTransactionData");
 const { saveTransactionToDB } = require("./saveArrayTransactionToDB");
 const API_BASE_URL = process.env.API_HOOK;
 const MAX_TRANSACTIONS_TO_LOAD = 1000;
-const LOAD_TRANSACTION_DELAY_MS = 5000;
+const LOAD_TRANSACTION_DELAY_MS = 1000;
 let alreadyDone = 0;
 
 const instance = axios.create({
@@ -47,6 +47,9 @@ const loadPreviusTransactions = async () => {
           (resultInt - index).toString(16),
           index
         );
+        if (index % 100 === 0) { 
+          console.log("step: ", index)
+        }
       }, index * LOAD_TRANSACTION_DELAY_MS);
     }
   } catch (error) {
